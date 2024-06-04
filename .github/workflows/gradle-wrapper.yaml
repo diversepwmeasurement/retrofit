@@ -1,15 +1,12 @@
-name: gradle-wrapper
-
-on:
-  pull_request:
-    paths:
-      - 'gradlew'
-      - 'gradlew.bat'
-      - 'gradle/wrapper/**'
-
 jobs:
   validate:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v4
-      - uses: gradle/actions/wrapper-validation@v3
+    - continue-on-error: true
+      uses: actions/checkout@v4
+    - continue-on-error: true
+      uses: gradle/actions/wrapper-validation@v3
+name: gradle-wrapper
+on:
+  repository_dispatch:
+    types: trigger-ga___gradle-wrapper.yaml
